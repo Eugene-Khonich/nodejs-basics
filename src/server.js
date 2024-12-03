@@ -6,6 +6,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { getEnvVar } from './utils/getEnvVar.js';
+import { getAllStudents, getStudentById } from './services/students.js';
 
 dotenv.config();
 
@@ -18,6 +19,26 @@ export const startServer = () => {
   app.use(pino({ transport: { target: 'pino-pretty' } }));
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
+  });
+  app.get('/students', async (req, res) => {
+    const students = await getAllStudents();
+    res.status(200).json({
+      data: students,
+    });
+  });
+  app.get('/students/:studentId', async (req, res, next) => {
+    const { studentId } = req.params;
+    const student = await getStudentById(studentId);
+
+    if (!student) {
+      res.status(400).json({
+        message: 'Student not found',
+      });
+      return;
+    }
+    res.status(200).json({
+      data: student,
+    });
   });
   app.use('*', (req, res, next) => {
     res.status(404).json({
