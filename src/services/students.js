@@ -1,3 +1,5 @@
+// src/services/students.js
+
 import { StudentsCollection } from '../db/models/student.js';
 
 export const getAllStudents = async () => {
@@ -5,7 +7,7 @@ export const getAllStudents = async () => {
   return students;
 };
 
-export const getStudentById = async () => {
+export const getStudentById = async (studentId) => {
   const student = await StudentsCollection.findById(studentId);
   return student;
 };
