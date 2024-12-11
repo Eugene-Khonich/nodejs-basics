@@ -1,13 +1,13 @@
 // src/server.js
 
 import express from 'express';
-import pino from 'pino-http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { getEnvVar } from './utils/getEnvVar.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { logger } from './middlewares/logger.js';
 import studentsRouter from './routers/students.js';
 
 dotenv.config();
@@ -24,7 +24,7 @@ export const startServer = () => {
     }),
   );
   app.use(cors());
-  app.use(pino({ transport: { target: 'pino-pretty' } }));
+  app.use(logger);
 
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
