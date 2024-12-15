@@ -8,7 +8,7 @@ import { createStudentSchema } from '../validation/students.js';
 import {
   getStudentsController,
   getStudentByIdController,
-  createStudentContriller,
+  createStudentController,
   deleteStudentController,
   upsertStudentController,
   patchStudentController,
@@ -16,25 +16,21 @@ import {
 
 const router = Router();
 
-router.get('/students', ctrlWrapper(getStudentsController));
-router.get(
-  '/students/:studentId',
-  isValidId,
-  ctrlWrapper(getStudentByIdController),
+router.get('/', ctrlWrapper(getStudentsController));
+router.get('/:studentId', isValidId, ctrlWrapper(getStudentByIdController));
+router.post(
+  '/register',
+  validateBody(createStudentSchema),
+  ctrlWrapper(createStudentController),
 );
-router.post('/students', ctrlWrapper(createStudentContriller));
-router.delete(
-  '/students/:studentId',
-  isValidId,
-  ctrlWrapper(deleteStudentController),
-);
+router.delete('/:studentId', isValidId, ctrlWrapper(deleteStudentController));
 router.put(
-  '/students/:studentId',
+  '/:studentId',
   validateBody(createStudentSchema),
   ctrlWrapper(upsertStudentController),
 );
 router.patch(
-  '/students/:studentId',
+  '/:studentId',
   validateBody(createStudentSchema),
   ctrlWrapper(patchStudentController),
 );

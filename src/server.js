@@ -8,7 +8,7 @@ import { getEnvVar } from './utils/getEnvVar.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { logger } from './middlewares/logger.js';
-import studentsRouter from './routers/students.js';
+import router from './routers/index.js';
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ export const startServer = () => {
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
   });
-  app.use(studentsRouter);
+  app.use(router);
   app.use('*', notFoundHandler);
   app.use(errorHandler);
   app.listen(PORT, () => {
