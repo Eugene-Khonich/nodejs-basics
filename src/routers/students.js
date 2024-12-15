@@ -4,7 +4,10 @@ import { Router } from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { isValidId } from '../middlewares/isValidId.js';
-import { createStudentSchema } from '../validation/students.js';
+import {
+  createStudentSchema,
+  updateStudentSchema,
+} from '../validation/students.js';
 import {
   getStudentsController,
   getStudentByIdController,
@@ -31,7 +34,7 @@ router.put(
 );
 router.patch(
   '/:studentId',
-  validateBody(createStudentSchema),
+  validateBody(updateStudentSchema),
   ctrlWrapper(patchStudentController),
 );
 
