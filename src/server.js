@@ -3,6 +3,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 import { getEnvVar } from './utils/getEnvVar.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -23,6 +24,7 @@ export const startServer = () => {
     }),
   );
   app.use(cors());
+  app.use(cookieParser());
   app.use(logger);
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
