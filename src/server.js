@@ -20,7 +20,6 @@ export const startServer = () => {
   app.use(express.json());
   app.use(cors());
   app.use(cookieParser());
-
   app.use(logger);
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });

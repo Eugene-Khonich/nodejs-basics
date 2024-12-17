@@ -14,6 +14,7 @@ import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getStudentsController = async (req, res) => {
+  console.log('Fetching students...');
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
   const filter = parseFilterParams(req.query);
@@ -24,6 +25,7 @@ export const getStudentsController = async (req, res) => {
     sortBy,
     filter,
   });
+  console.log('Students fetched:', students);
   res.json({
     status: 200,
     message: 'Seccefully found students!',
