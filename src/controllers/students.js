@@ -20,8 +20,8 @@ export const getStudentsController = async (req, res) => {
   const students = await getAllStudents({
     page,
     perPage,
-    sortBy,
     sortOrder,
+    sortBy,
     filter,
   });
   res.json({
