@@ -33,19 +33,19 @@ const studentsSchema = new Schema(
   },
 );
 
-// studentsSchema.post('save', (error, doc, next) => {
-//   error.status = 400;
-//   next();
-// });
-// studentsSchema.post('findOneAndUpdate', (error, doc, next) => {
-//   error.status = 400;
-//   next();
-// });
-// studentsSchema.pre('findOneAndUpdate', function (next) {
-//   this.options.new = true;
-//   this.options.runValodators = true;
-//   next();
-// });
+studentsSchema.post('save', (error, doc, next) => {
+  error.status = 400;
+  next();
+});
+studentsSchema.post('findOneAndUpdate', (error, doc, next) => {
+  error.status = 400;
+  next();
+});
+studentsSchema.pre('findOneAndUpdate', function (next) {
+  this.options.new = true;
+  this.options.runValidators = true;
+  next();
+});
 // Встановлення номера помилки та повторна фалідація
 
 export const StudentsCollection = model('students', studentsSchema);
