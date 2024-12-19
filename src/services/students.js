@@ -66,8 +66,12 @@ export const updateStudent = async (studentId, payload, options = {}) => {
     { _id: studentId },
     payload,
     {
+      // Можна видалити
       new: true,
+      runValidators: true,
+      // Можна видалити
       includeResultMetadata: true,
+
       ...options,
     },
   );
