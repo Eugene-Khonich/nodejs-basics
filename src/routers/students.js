@@ -16,9 +16,11 @@ import {
   upsertStudentController,
   patchStudentController,
 } from '../controllers/students.js';
+import { authenticate } from '../middlewares/authenticate.js';
 
 const router = Router();
 
+router.use(authenticate);
 router.get('/', ctrlWrapper(getStudentsController));
 router.get('/:studentId', isValidId, ctrlWrapper(getStudentByIdController));
 router.post(

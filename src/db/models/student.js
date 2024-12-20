@@ -46,6 +46,21 @@ studentsSchema.pre('findOneAndUpdate', function (next) {
   this.options.runValidators = true;
   next();
 });
-// Встановлення номера помилки та повторна фалідація
+// Встановлення номера помилки та повторна фалідація,
 
+// studentsSchema.pre('find', function () {
+//   const sortableFields = Object.keys(this.model.schema.paths).filter(
+//     (field) => {
+//       return field;
+//     },
+//   );
+//   console.log('Available fields for sorting:', sortableFields);
+// });
+// const getSortableFields = (model) => {
+//   return Object.keys(model.schema.paths).filter(
+//     (field) => !['_id', '__v'].includes(field),
+//   );
+// };
+// const sortableFields = getSortableFields(YourModel);
+// console.log('Sortable fields:', sortableFields);
 export const StudentsCollection = model('students', studentsSchema);
