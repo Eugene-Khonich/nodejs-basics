@@ -13,7 +13,6 @@ import { SessionsCollection } from '../db/models/session.js';
 import { sendEmail } from '../utils/sendMail.js';
 import { SMTP } from '../constans/index.js';
 import { getEnvVar } from '../utils/getEnvVar.js';
-import e from 'express';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
