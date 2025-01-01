@@ -10,6 +10,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { logger } from './middlewares/logger.js';
 import router from './routers/index.js';
+import { UPLOAD_DIR } from './constans/index.js';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ export const startServer = () => {
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
   });
+  app.use('/uploads', express.static(UPLOAD_DIR));
   app.use(router);
   app.use('*', notFoundHandler);
   app.use(errorHandler);
