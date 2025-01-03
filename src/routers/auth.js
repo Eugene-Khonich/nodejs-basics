@@ -17,7 +17,7 @@ import {
   resetPasswordController,
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { authenticate } from '../middlewares/authenticate.js';
+import { getGoogleAuthUrlController } from '../controllers/auth.js';
 
 const router = Router();
 
@@ -43,5 +43,6 @@ router.post(
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordController),
 );
+router.get('/get-oauth-url', ctrlWrapper(getGoogleAuthUrlController));
 
 export default router;
